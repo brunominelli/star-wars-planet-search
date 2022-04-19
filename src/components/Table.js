@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
-import planetTableHeaders from '../data';
+import { planetTableHeaders } from '../data';
 import Filters from './Filters';
 
 function Table() {

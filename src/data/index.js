@@ -14,4 +14,18 @@ const planetTableHeaders = [
   'URL',
 ];
 
-export default planetTableHeaders;
+const optionsNumericValues = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
+const operators = [
+  'maior que',
+  'menor que',
+  'igual a',
+];
+
+export { planetTableHeaders, optionsNumericValues, operators };

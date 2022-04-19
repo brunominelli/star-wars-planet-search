@@ -7,6 +7,10 @@ function AppProvider({ children }) {
   const [data, setData] = useState([]);
   const [prevData, setPrevData] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
+  const [
+    filterByNumericValues,
+    setFilterByNumericNumbers,
+  ] = useState([]);
 
   useEffect(() => {
     const getPlanets = async () => {
@@ -18,11 +22,23 @@ function AppProvider({ children }) {
   }, []);
 
   const filterName = (name) => {
-    const newData = prevData
-      .filter((planets) => planets.name
+    const filter = prevData
+      .filter((planet) => planet.name
         .includes(name));
-    setData(newData);
+    setData(filter);
     setFilterByName(name);
+  };
+
+  const filterNumericNumbers = (column, comparison, value) => {
+    const query = { column, comparison, value };
+    const filter = prevData.filter((planet) => {
+      if (query.comparison === 'maior que') return planet[query.column] > +value;
+      if (query.comparison === 'menor que') return planet[query.column] < +value;
+      if (query.comparison === 'igual a') return planet[query.column] === value;
+      return planet;
+    });
+    setData(filter);
+    setFilterByNumericNumbers([...filterByNumericValues, query]);
   };
 
   const object = {
@@ -31,6 +47,8 @@ function AppProvider({ children }) {
     filterByName,
     setFilterByName,
     filterName,
+    filterByNumericValues,
+    filterNumericNumbers,
   };
 
   return (

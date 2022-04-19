@@ -1,8 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
+import { operators, optionsNumericValues } from '../data';
 
 function Filters() {
-  const { filterByName, filterName } = useContext(AppContext);
+  const [column, setColumn] = useState('population');
+  const [comparison, setComparison] = useState('maior que');
+  const [value, setValue] = useState('0');
+
+  const { filterByName, filterName, filterNumericNumbers } = useContext(AppContext);
 
   const handleChange = ({ target }) => {
     filterName(target.value);
@@ -20,6 +25,37 @@ function Filters() {
           data-testid="name-filter"
         />
       </label>
+      <select
+        data-testid="column-filter"
+        value={ column }
+        onChange={ (e) => setColumn(e.target.value) }
+      >
+        {optionsNumericValues.map((option) => (
+          <option key={ option }>{option}</option>
+        ))}
+      </select>
+      <select
+        data-testid="comparison-filter"
+        value={ comparison }
+        onChange={ (e) => setComparison(e.target.value) }
+      >
+        {operators.map((option) => (
+          <option key={ option }>{option}</option>
+        ))}
+      </select>
+      <input
+        type="number"
+        data-testid="value-filter"
+        value={ value }
+        onChange={ (e) => setValue(e.target.value) }
+      />
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={ () => filterNumericNumbers(column, comparison, value) }
+      >
+        Filter
+      </button>
     </form>
   );
 }
