@@ -9,7 +9,7 @@ function AppProvider({ children }) {
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [
     filterByNumericValues,
-    setFilterByNumericNumbers,
+    setFilterByNumericValues,
   ] = useState([]);
 
   useEffect(() => {
@@ -29,16 +29,16 @@ function AppProvider({ children }) {
     setFilterByName(name);
   };
 
-  const filterNumericNumbers = (column, comparison, value) => {
+  const filterNumericValues = (column, comparison, value) => {
     const query = { column, comparison, value };
-    const filter = prevData.filter((planet) => {
+    const filter = data.filter((planet) => {
       if (query.comparison === 'maior que') return planet[query.column] > +value;
       if (query.comparison === 'menor que') return planet[query.column] < +value;
       if (query.comparison === 'igual a') return planet[query.column] === value;
       return planet;
     });
     setData(filter);
-    setFilterByNumericNumbers([...filterByNumericValues, query]);
+    setFilterByNumericValues([query, ...filterByNumericValues]);
   };
 
   const object = {
@@ -48,7 +48,7 @@ function AppProvider({ children }) {
     setFilterByName,
     filterName,
     filterByNumericValues,
-    filterNumericNumbers,
+    filterNumericValues,
   };
 
   return (

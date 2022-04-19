@@ -7,7 +7,7 @@ function Filters() {
   const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState('0');
 
-  const { filterByName, filterName, filterNumericNumbers } = useContext(AppContext);
+  const { filterByName, filterName, filterNumericValues } = useContext(AppContext);
 
   const handleChange = ({ target }) => {
     filterName(target.value);
@@ -52,7 +52,7 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => filterNumericNumbers(column, comparison, value) }
+        onClick={ () => filterNumericValues(column, comparison, value) }
       >
         Filter
       </button>
