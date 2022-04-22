@@ -17,9 +17,9 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {data.map((planet) => (
-            <tr key={ planet.name }>
-              <td>{planet.name}</td>
+          {data.map((planet, index) => (
+            <tr key={ `${index}-${planet.name}` }>
+              <td data-testid="planet-name">{planet.name}</td>
               <td>{planet.rotation_period}</td>
               <td>{planet.orbital_period}</td>
               <td>{planet.diameter}</td>

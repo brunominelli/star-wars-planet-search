@@ -14,7 +14,7 @@ const planetTableHeaders = [
   'URL',
 ];
 
-const optionsNumericValues = [
+const numericValues = [
   'population',
   'orbital_period',
   'diameter',
@@ -28,4 +28,4 @@ const operators = [
   'igual a',
 ];
 
-export { planetTableHeaders, optionsNumericValues, operators };
+export { planetTableHeaders, numericValues, operators };

@@ -1,23 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../context/AppContext';
-import { operators, optionsNumericValues } from '../data';
+import { operators, numericValues } from '../data';
 
 function Filters() {
   const [column, setColumn] = useState('population');
   const [comparison, setComparison] = useState('maior que');
   const [value, setValue] = useState('0');
-  const [enabledColumns, setEnabledColumns] = useState([...optionsNumericValues]);
+  const [enabledColumns, setEnabledColumns] = useState([...numericValues]);
+  const [sort, setSort] = useState('ASC');
+  const [columnSort, setColumnSort] = useState('population');
 
   const {
     filterByName,
     filterName,
     filterNumericValues,
     filterByNumericValues,
+    sortColumns,
+    removeFilter,
+    removeAllFilters,
   } = useContext(AppContext);
 
   useEffect(() => {
     const columns = filterByNumericValues.map((option) => option.column);
-    const filters = optionsNumericValues
+    const filters = numericValues
       .filter((option) => !columns.includes(option));
     setEnabledColumns(filters);
   }, [filterByNumericValues]);
@@ -70,12 +75,71 @@ function Filters() {
         >
           Filter
         </button>
+        <label htmlFor="column-sort">
+          <label htmlFor="column-sort-input-asc">
+            <span>Ascending</span>
+            <input
+              type="radio"
+              value="ASC"
+              id="column-sort-input-asc"
+              name="column-sort"
+              data-testid="column-sort-input-asc"
+              defaultChecked
+              onClick={ (e) => setSort(e.target.value) }
+            />
+          </label>
+          <label htmlFor="column-sort-input-desc">
+            <span>Descendant</span>
+            <input
+              type="radio"
+              value="DESC"
+              id="column-sort-input-desc"
+              name="column-sort"
+              data-testid="column-sort-input-desc"
+              onClick={ (e) => setSort(e.target.value) }
+            />
+          </label>
+          <span>Order</span>
+          <select
+            id="column-sort"
+            data-testid="column-sort"
+            onChange={ (e) => setColumnSort(e.target.value) }
+          >
+            {numericValues.map((option) => (
+              <option key={ option }>{option}</option>
+            ))}
+          </select>
+          <button
+            type="button"
+            data-testid="column-sort-button"
+            onClick={ () => sortColumns(sort, columnSort) }
+          >
+            Order
+          </button>
+        </label>
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ () => removeAllFilters() }
+        >
+          Remove Filters
+        </button>
       </form>
       <div>
         {filterByNumericValues.map((filter, index) => (
-          <p key={ index }>
-            { `${filter.column} ${filter.comparison} ${filter.value}` }
-          </p>
+          <div key={ index } className="row">
+            <p>
+              { `${filter.column} ${filter.comparison} ${filter.value}` }
+            </p>
+            <button
+              type="button"
+              data-testid="filter"
+              value={ index }
+              onClick={ (e) => removeFilter(+e.target.value) }
+            >
+              x
+            </button>
+          </div>
         ))}
       </div>
     </>
