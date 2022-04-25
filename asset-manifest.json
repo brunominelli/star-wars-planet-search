@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/star-wars-planet-search/static/css/main.ed0f75f2.chunk.css",
+    "main.js": "/star-wars-planet-search/static/js/main.d469deb8.chunk.js",
+    "main.js.map": "/star-wars-planet-search/static/js/main.d469deb8.chunk.js.map",
+    "runtime-main.js": "/star-wars-planet-search/static/js/runtime-main.2983b150.js",
+    "runtime-main.js.map": "/star-wars-planet-search/static/js/runtime-main.2983b150.js.map",
+    "static/js/2.c40979da.chunk.js": "/star-wars-planet-search/static/js/2.c40979da.chunk.js",
+    "static/js/2.c40979da.chunk.js.map": "/star-wars-planet-search/static/js/2.c40979da.chunk.js.map",
+    "index.html": "/star-wars-planet-search/index.html",
+    "precache-manifest.38c224ee342f79604f959615a140964e.js": "/star-wars-planet-search/precache-manifest.38c224ee342f79604f959615a140964e.js",
+    "service-worker.js": "/star-wars-planet-search/service-worker.js",
+    "static/css/main.ed0f75f2.chunk.css.map": "/star-wars-planet-search/static/css/main.ed0f75f2.chunk.css.map",
+    "static/js/2.c40979da.chunk.js.LICENSE.txt": "/star-wars-planet-search/static/js/2.c40979da.chunk.js.LICENSE.txt",
+    "static/media/email-white-icon.png": "/star-wars-planet-search/static/media/email-white-icon.857c5b6e.png",
+    "static/media/github-white-icon.png": "/star-wars-planet-search/static/media/github-white-icon.eee19cac.png",
+    "static/media/linkedin-white-icon.png": "/star-wars-planet-search/static/media/linkedin-white-icon.3b8104fc.png",
+    "static/media/telegram-white-icon.png": "/star-wars-planet-search/static/media/telegram-white-icon.80c92b9c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2983b150.js",
+    "static/js/2.c40979da.chunk.js",
+    "static/css/main.ed0f75f2.chunk.css",
+    "static/js/main.d469deb8.chunk.js"
+  ]
+}
