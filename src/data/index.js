@@ -8,10 +8,6 @@ const planetTableHeaders = [
   'Terrain',
   'Surface Water',
   'Population',
-  'Films',
-  'Created',
-  'Edited',
-  'URL',
 ];
 
 const numericValues = [

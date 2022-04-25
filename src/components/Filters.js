@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../context/AppContext';
 import { operators, numericValues } from '../data';
+import styles from '../styles/Filters.module.css';
 
 function Filters() {
   const [column, setColumn] = useState('population');
@@ -32,21 +33,23 @@ function Filters() {
   };
 
   return (
-    <>
-      <form>
-        <div className="row">
+    <section className={ styles.container }>
+      <form className={ styles.form }>
+        <div className={ styles.row }>
           <input
             type="text"
             id="name-filter"
             name="name-filter"
             value={ filterByName.name }
             onChange={ handleChange }
+            className={ styles.form_input }
             data-testid="name-filter"
           />
           <select
             data-testid="column-filter"
             value={ column }
             onChange={ (e) => setColumn(e.target.value) }
+            className={ styles.form_input }
           >
             {enabledColumns.map((option) => (
               <option key={ option }>{option}</option>
@@ -56,6 +59,7 @@ function Filters() {
             data-testid="comparison-filter"
             value={ comparison }
             onChange={ (e) => setComparison(e.target.value) }
+            className={ styles.form_input }
           >
             {operators.map((option) => (
               <option key={ option }>{option}</option>
@@ -66,17 +70,19 @@ function Filters() {
             data-testid="value-filter"
             value={ value }
             onChange={ (e) => setValue(e.target.value) }
+            className={ styles.form_input }
           />
           <button
             type="button"
             data-testid="button-filter"
             onClick={ () => filterNumericValues(column, comparison, value) }
+            className={ styles.form_input }
           >
             Filter
           </button>
         </div>
-        <div className="row">
-          <label htmlFor="column-sort-input-asc">
+        <div className={ styles.row }>
+          <label className={ styles.label } htmlFor="column-sort-input-asc">
             <span>Ascending</span>
             <input
               type="radio"
@@ -88,7 +94,7 @@ function Filters() {
               onClick={ (e) => setSort(e.target.value) }
             />
           </label>
-          <label htmlFor="column-sort-input-desc">
+          <label className={ styles.label } htmlFor="column-sort-input-desc">
             <span>Descendant</span>
             <input
               type="radio"
@@ -99,20 +105,22 @@ function Filters() {
               onClick={ (e) => setSort(e.target.value) }
             />
           </label>
-          <span>Order</span>
-          <select
-            id="column-sort"
-            data-testid="column-sort"
-            onChange={ (e) => setColumnSort(e.target.value) }
-          >
-            {numericValues.map((option) => (
-              <option key={ option }>{option}</option>
-            ))}
-          </select>
+            <span>Order</span>
+            <select
+              id="column-sort"
+              data-testid="column-sort"
+              onChange={ (e) => setColumnSort(e.target.value) }
+              className={ styles.form_input }
+            >
+              {numericValues.map((option) => (
+                <option key={ option }>{option}</option>
+              ))}
+            </select>
           <button
             type="button"
             data-testid="column-sort-button"
             onClick={ () => sortColumns(sort, columnSort) }
+            className={ styles.form_input }
           >
             Order
           </button>
@@ -120,6 +128,7 @@ function Filters() {
             type="button"
             data-testid="button-remove-filters"
             onClick={ () => removeAllFilters() }
+            className={ styles.form_input }
           >
             Remove Filters
           </button>
@@ -127,21 +136,22 @@ function Filters() {
       </form>
       <div>
         {filterByNumericValues.map((filter, index) => (
-          <div key={ index } className="row" data-testid="filter">
-            <p>
+          <div key={ index } className={ styles.row } data-testid="filter">
+            <p className={ styles.form_input }>
               { `${filter.column} ${filter.comparison} ${filter.value}` }
             </p>
             <button
               type="button"
               value={ index }
               onClick={ (e) => removeFilter(+e.target.value) }
+              className={ styles.form_input }
             >
               X
             </button>
           </div>
         ))}
       </div>
-    </>
+    </section>
   );
 }
 
