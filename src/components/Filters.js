@@ -34,7 +34,7 @@ function Filters() {
   return (
     <>
       <form>
-        <label htmlFor="name-filter">
+        <div className="row">
           <input
             type="text"
             id="name-filter"
@@ -43,39 +43,39 @@ function Filters() {
             onChange={ handleChange }
             data-testid="name-filter"
           />
-        </label>
-        <select
-          data-testid="column-filter"
-          value={ column }
-          onChange={ (e) => setColumn(e.target.value) }
-        >
-          {enabledColumns.map((option) => (
-            <option key={ option }>{option}</option>
-          ))}
-        </select>
-        <select
-          data-testid="comparison-filter"
-          value={ comparison }
-          onChange={ (e) => setComparison(e.target.value) }
-        >
-          {operators.map((option) => (
-            <option key={ option }>{option}</option>
-          ))}
-        </select>
-        <input
-          type="number"
-          data-testid="value-filter"
-          value={ value }
-          onChange={ (e) => setValue(e.target.value) }
-        />
-        <button
-          type="button"
-          data-testid="button-filter"
-          onClick={ () => filterNumericValues(column, comparison, value) }
-        >
-          Filter
-        </button>
-        <label htmlFor="column-sort">
+          <select
+            data-testid="column-filter"
+            value={ column }
+            onChange={ (e) => setColumn(e.target.value) }
+          >
+            {enabledColumns.map((option) => (
+              <option key={ option }>{option}</option>
+            ))}
+          </select>
+          <select
+            data-testid="comparison-filter"
+            value={ comparison }
+            onChange={ (e) => setComparison(e.target.value) }
+          >
+            {operators.map((option) => (
+              <option key={ option }>{option}</option>
+            ))}
+          </select>
+          <input
+            type="number"
+            data-testid="value-filter"
+            value={ value }
+            onChange={ (e) => setValue(e.target.value) }
+          />
+          <button
+            type="button"
+            data-testid="button-filter"
+            onClick={ () => filterNumericValues(column, comparison, value) }
+          >
+            Filter
+          </button>
+        </div>
+        <div className="row">
           <label htmlFor="column-sort-input-asc">
             <span>Ascending</span>
             <input
@@ -116,28 +116,27 @@ function Filters() {
           >
             Order
           </button>
-        </label>
-        <button
-          type="button"
-          data-testid="button-remove-filters"
-          onClick={ () => removeAllFilters() }
-        >
-          Remove Filters
-        </button>
+          <button
+            type="button"
+            data-testid="button-remove-filters"
+            onClick={ () => removeAllFilters() }
+          >
+            Remove Filters
+          </button>
+        </div>
       </form>
       <div>
         {filterByNumericValues.map((filter, index) => (
-          <div key={ index } className="row">
+          <div key={ index } className="row" data-testid="filter">
             <p>
               { `${filter.column} ${filter.comparison} ${filter.value}` }
             </p>
             <button
               type="button"
-              data-testid="filter"
               value={ index }
               onClick={ (e) => removeFilter(+e.target.value) }
             >
-              x
+              X
             </button>
           </div>
         ))}

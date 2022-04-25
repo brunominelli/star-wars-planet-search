@@ -36,7 +36,7 @@ function AppProvider({ children }) {
 
   const filterName = (name) => {
     const filter = prevData
-      .filter((planet) => planet.name
+      .filter((planet) => planet.name.toLowerCase()
         .includes(name));
     setData(filter);
     setFilterByName(name);
@@ -60,33 +60,31 @@ function AppProvider({ children }) {
     let numericResult = [];
     let result = [];
 
-    setOrder(object);
-
     switch (sort) {
     case 'ASC':
-      unknownResult = prevData.filter((planet) => planet[column] === 'unknown');
-      numericResult = prevData.filter((planet) => planet[column] !== 'unknown')
+      unknownResult = data.filter((planet) => planet[column] === 'unknown');
+      numericResult = data.filter((planet) => planet[column] !== 'unknown')
         .sort((a, b) => +a[column] - +b[column]);
       result = [...numericResult, ...unknownResult];
-      console.log(result);
       setData(result);
       break;
     case 'DESC':
-      unknownResult = prevData.filter((planet) => planet[column] === 'unknown');
-      numericResult = prevData.filter((planet) => planet[column] !== 'unknown')
+      unknownResult = data.filter((planet) => planet[column] === 'unknown');
+      numericResult = data.filter((planet) => planet[column] !== 'unknown')
         .sort((a, b) => +b[column] - +a[column]);
       result = [...numericResult, ...unknownResult];
-      console.log(result);
       setData(result);
       break;
     default:
       break;
     }
+    setOrder(object);
   };
 
   const removeFilter = (id) => {
     const filters = filterByNumericValues
       .filter((filter) => filter !== filterByNumericValues[id]);
+
     if (filters.length === 0) {
       setData(prevData);
       setFilterByNumericValues(filters);
